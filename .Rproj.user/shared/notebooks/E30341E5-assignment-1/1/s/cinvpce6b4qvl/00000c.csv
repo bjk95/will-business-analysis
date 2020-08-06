@@ -1,0 +1,77 @@
+"0","library(""Hmisc"")"
+"2","Loading required package: lattice
+"
+"2","Loading required package: survival
+"
+"2","Loading required package: Formula
+"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"
+"2","
+Attaching package: ‘Hmisc’
+
+"
+"2","The following objects are masked from ‘package:dplyr’:
+
+    src, summarize
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+"
+"0","res <- rcorr(df$Profit, df$Satisfaction)"
+"0","res"
+"1"," "
+"1","    x"
+"1","    y"
+"1","
+x"
+"1"," 1.00"
+"1"," 0.03"
+"1","
+y"
+"1"," 0.03"
+"1"," 1.00"
+"1","
+"
+"1","
+n="
+"1"," "
+"1","250"
+"1"," "
+"1","
+
+"
+"1","
+P
+"
+"1"," "
+"1"," x     "
+"1"," y     "
+"1","
+x"
+"1","       "
+"1"," 0.6526"
+"1","
+y"
+"1"," 0.6526"
+"1","       "
+"1","
+"
+"0","ggplot(df, aes(x=Satisfaction, y=Profit)) + "
+"0","  geom_point()+"
+"0","  geom_smooth(method=lm, , se=FALSE)"

@@ -1,0 +1,4 @@
+"0","df$EventSize <- cut(df$Guests,"
+"0","                    breaks = c(-Inf, 10, 25, 50, 100, Inf),"
+"0","                    labels = c(""Micro"", ""Mini"", ""Small"", ""Medium"", ""Large"")"
+"0","                    )"

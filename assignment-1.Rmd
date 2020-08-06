@@ -1,0 +1,150 @@
+---
+title: "Business Analytics – MIS17: Assignment 1"
+output: html_notebook
+---
+```{r}
+require(xlsx)
+library(tidyverse)
+df <- read.xlsx("MIS171-2020-T2-A1.xlsx", "Data")
+head(df)
+```
+
+# Univariate analysis
+### 1.1 Profile of event types
+##### Frequency count
+```{r}
+table(df$EventType)
+```
+##### Histogram of event types
+```{r}
+ggplot(df, aes(x=EventType)) + geom_histogram(stat="count")
+```
+
+### 1.2 Summary of number of guests
+##### Summary statistics of guests
+```{r}
+summary(df$Guests)
+```
+
+##### Histogram of guest count
+```{r}
+ggplot(df, aes(x=Guests)) + geom_histogram(bins=10)
+```
+### 1.3 Number of guests outliers
+##### Boxplot to reveal outliers
+```{r}
+ggplot(df, aes(x=Guests)) + geom_boxplot()
+
+```
+The boxplot reveals 1 outlier: the event with 327 guests 
+
+### 1.4 Profile of event size 
+##### Transforming number of guests to specified categories
+```{r}
+df$EventSize <- cut(df$Guests,
+                    breaks = c(-Inf, 10, 25, 50, 100, Inf),
+                    labels = c("Micro", "Mini", "Small", "Medium", "Large")
+                    )
+```
+
+##### Summary statistics of event size
+```{r}
+summary(df$EventSize)
+```
+##### Histogram of event size
+```{r}
+```
+
+
+```{r}
+ggplot(df, aes(x=EventSize)) + geom_histogram(stat="count", bins=10)
+```
+
+### 1.5 Profile of venues
+##### Frequency table of venue
+```{r}
+table(df$Venue)
+```
+##### Histogram of venues
+```{r}
+ggplot(df, aes(x=Venue)) + geom_histogram(stat="count")
+```
+
+### 1.5 Summary of profit
+### profit summary statistics
+```{r}
+summary(df$Profit)
+```
+### Histogram of profits
+```{r}
+ggplot(df, aes(x=Profit)) + geom_histogram( bins=10)
+```
+
+### 1.6 Profit outliers
+##### Boxplot of profits
+```{r}
+ggplot(df, aes(x=Profit)) + geom_boxplot()
+```
+
+
+### 1.8 Summary of satisfaction
+### Satisfaction summary statistics
+```{r}
+summary(df$Satisfaction)
+```
+### Histogram of satisfaction
+```{r}
+ggplot(df, aes(x=Satisfaction)) + geom_histogram( bins=10)
+```
+
+### 1.9 Satisfaction outliers
+##### Boxplot of satisfaction
+```{r}
+ggplot(df, aes(x=Satisfaction)) + geom_boxplot()
+```
+
+# Bivariate analysis
+### 2.1 Differences in the average Profit between different Event Types
+
+
+```{r}
+tapply(df$Profit, df$EventType, summary)
+
+ggplot(df, aes(x=EventType, y=Profit)) + 
+    geom_boxplot()
+
+```
+
+### 2.2 Correltaion between profits and satisfaction
+
+```{r}
+library("Hmisc")
+res <- rcorr(df$Profit, df$Satisfaction)
+res
+
+ggplot(df, aes(x=Satisfaction, y=Profit)) + 
+  geom_point()+
+  geom_smooth(method=lm, , se=FALSE)
+```
+### Relationship between event size and profit
+
+```{r}
+ggplot(df, aes(x=EventSize, y=Profit)) + 
+    geom_boxplot()
+```
+```{r}
+
+tapply(df$Profit, df$EventSize, summary)
+```
+### Relationship between satisfaction and venue
+```{r}
+tapply(df$Satisfaction, df$Venue, summary)
+```
+```{r}
+ggplot(df, aes(x=Venue, y=Satisfaction)) + 
+    geom_boxplot()
+```
+
+
+
+

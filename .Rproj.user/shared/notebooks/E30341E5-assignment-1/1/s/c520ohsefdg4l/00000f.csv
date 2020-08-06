@@ -1,0 +1,2 @@
+"0","ggplot(df, aes(x=EventSize)) + geom_histogram(stat=""count"", bins=10)"
+"2","Ignoring unknown parameters: binwidth, bins, pad"
